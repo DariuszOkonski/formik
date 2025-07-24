@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import { basicSchema } from './schemas';
 
-const onSubmit = (values, actions) => {
+const onSubmit = async (values, actions) => {
   console.log('onSubmit');
   console.log('values: ', values);
   console.log('actions: ', actions);
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  actions.resetForm();
 };
 
 const BasicForm = () => {
@@ -95,7 +97,9 @@ const BasicForm = () => {
           <span className='error'>{formik.errors.confirmPassword}</span>
         )}
       </div>
-      <button>Submit</button>
+      <button disabled={formik.isSubmitting} type='submit'>
+        {formik.isSubmitting ? 'Submitting...' : 'Submit'}
+      </button>
     </form>
   );
 };
