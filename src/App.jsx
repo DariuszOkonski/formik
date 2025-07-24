@@ -4,7 +4,7 @@ import './App.css';
 import BasicForm from './BasicForm';
 
 function App() {
-  const [view, setView] = useState('basic');
+  const [view, setView] = useState('advanced');
 
   return (
     <div>
